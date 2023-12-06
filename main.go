@@ -81,5 +81,13 @@ func DrawPlot(screen *ebiten.Image, p *plot.Plot) {
 
 // Returns approximating linear function
 func Approximate(points plotter.XYs) func(float64) float64 {
-	return func(x float64) float64 { return 2*x + 1 }
+	var sx, sxx, sy, sxy float64
+	n := float64(points.Len())
+	for _, p := range points {
+		sx, sxx, sy, sxy = sx+p.X, sxx+p.X*p.X, sy+p.Y, sxy+p.X*p.Y
+	}
+	a := (n*sxy - sx*sy) / (n*sxx - sx*sx)
+	return func(x float64) float64 {
+		return a*x + (sy-a*sx)/n
+	}
 }
