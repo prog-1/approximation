@@ -62,7 +62,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		vector.DrawFilledCircle(screen, float32((v.x*g.scale + offset.x)), float32((v.y*(-1)*g.scale + offset.y)), 5, color.RGBA{255, 0, 0, 255}, false)
 	}
 	k, b := approximation(g.points)
-	vector.StrokeLine(screen, 0, float32(((k*(-offset.x/g.scale)+b)*(-1))*g.scale+offset.y), float32(g.width), float32(((k*float64(offset.x/g.scale)+b)*(-1))*g.scale+offset.y), 2, color.RGBA{255, 165, 0, 150}, false)
+	vector.StrokeLine(screen, 0, float32(((k*(-offset.x/g.scale)+b)*(-1))*g.scale+offset.y), float32(g.width), float32(((k*(offset.x/g.scale)+b)*(-1))*g.scale+offset.y), 2, color.RGBA{255, 165, 0, 150}, false)
 	vector.StrokeLine(screen, 0, float32(offset.y), float32(g.width), float32(offset.y), 3, color.White, false)
 	vector.StrokeLine(screen, float32(offset.x), 0, float32(offset.x), float32(g.height), 3, color.White, false)
 
@@ -90,7 +90,7 @@ func main() {
 	// p = []Point{{10000, 12350}, {-10000, -13210}, {100, -13210}, {-3200, -13210}, {-12300, -13210}, {-1020, -1323}}
 	for i := 0; i < n; i++ {
 		fmt.Scan(&x, &y)
-		p = append(p, Point{x, y})
+		p[i] = Point{x, y}
 		if abs(x) > maxPoint.maxVal {
 			maxPoint.maxVal = abs(x)
 			maxPoint.axisType = true
