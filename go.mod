@@ -1,4 +1,4 @@
-module main.go
+module porabola.go
 
 go 1.21.1
 

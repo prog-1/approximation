@@ -63,7 +63,7 @@ func DrawPoints(image *ebiten.Image, points []point) {
 
 func main() {
 	ebiten.SetWindowSize(screenWidth, screenHeight)
-	ebiten.SetWindowTitle("Approximation")
+	ebiten.SetWindowTitle("Linear approximation")
 	if err := ebiten.RunGame(&game{}); err != nil {
 		panic(err)
 	}
